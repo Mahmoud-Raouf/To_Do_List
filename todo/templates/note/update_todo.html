@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block body %}
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+      <div class="col-lg-12">
+        <div class="card px-3">
+          <div class="card-body text-right">
+          <h4 class="card-title">قائمة مهامك الرئيسية</h4>
+          <form method="POST">
+          {% csrf_token %}
+          <div class="add-items d-flex"> 
+            <input type="text" name="title" value="{{update_todo_form.title.value}}" class="form-control todo-list-input" placeholder="What do you need to do today?">
+            <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn padding-box " style="margin-top: 32px;height: 3.7rem;">إضافة</button> </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

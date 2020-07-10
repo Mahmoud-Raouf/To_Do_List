@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+{% block body %}
+
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+      <div class="col-lg-12">
+        <div class="card px-3">
+          <div class="card-body text-right">
+            <h4 class="card-title">قائمة مهامك الرئيسية</h4>
+            <form method="POST">
+              {% csrf_token %}
+              <div class="add-items d-flex">
+                <input type="text" name="title" class="form-control todo-list-input" placeholder="ما هي مهامك اليوم ؟">
+                <button type="submit"
+                  class="add btn btn-primary font-weight-bold todo-list-add-btn padding-box ">إضافة</button> </div>
+            </form>
+
+            <div class="list-wrapper">
+              <ul class="d-flex flex-column-reverse todo-list">
+                {% for todo in todoes %}
+
+                {% if todo.checked == True %}
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+
+                      <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="todo_id" value="{{todo.id}}">
+                        <input class="checkbox" onChange='submit();' type="checkbox" checked="">
+                      </form>
+ 
+                      . {{todo.title}}
+                      <i class="input-helper"></i>
+                    </label>
+                  </div>
+                  <a style="margin-left: auto" href="{% url 'home:update_todo' todo.id %}"><i
+                      class="remove mdi mdi-close-circle-outline"></i></a>
+
+                  <a style="margin-left: auto" href="{% url 'home:todo_delete' todo.id %}"><i
+                      class="remove mdi mdi-close-circle-outline"></i></a>
+                </li>
+                {% else %}
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+
+                      <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="todo_id" value="{{todo.id}}">
+                        <input class="checkbox" onChange='submit();' type="checkbox">
+                      </form>
+
+                      {{todo.title}} .
+                      <i class="input-helper"></i>
+                    </label> </div>
+                  <a style="margin-left: auto" href="{% url 'home:update_todo' todo.id %}"><i
+                      class=" remove mdi mdi-close-circle-outline"></i></a>
+
+                  <a style="margin-left: auto" href="{% url 'home:todo_delete' todo.id %}"><i
+                      class="remove mdi mdi-close-circle-outline"></i></a>
+                </li>
+                {% endif %}
+
+                {% endfor %}
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
