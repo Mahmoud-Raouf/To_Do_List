@@ -20,51 +20,28 @@
 
             <div class="list-wrapper">
               <ul class="d-flex flex-column-reverse todo-list">
+
                 {% for todo in todoes %}
-
-                {% if todo.checked == True %}
-                <li class="completed">
-                  <div class="form-check">
-                    <label class="form-check-label">
-
-                      <form method="POST">
+                  <li class="{% if todo.checked == True %} completed {% endif %}" >
+                    <div class="form-check">
+                      <form method="POST" class="form-check">
                         {% csrf_token %}
-                        <input type="hidden" name="todo_id" value="{{todo.id}}">
-                        <input class="checkbox" onChange='submit();' type="checkbox" checked="">
+                        <label class="form-check-label">
+                          <input type="hidden" name="todo_id" value="{{todo.id}}">
+                          <input class="checkbox" onChange='submit();' type="checkbox" {% if todo.checked == True %}
+                            checked {% endif %}>
+
+                          . {{todo.title}}
+                          <i class="input-helper"></i>
+                        </label>
                       </form>
- 
-                      . {{todo.title}}
-                      <i class="input-helper"></i>
-                    </label>
-                  </div>
-                  <a style="margin-left: auto" href="{% url 'home:update_todo' todo.id %}"><i
-                      class="remove mdi mdi-close-circle-outline"></i></a>
+                    </div>
+                    <a style="margin-left: auto" href="{% url 'home:update_todo' todo.id %}"><i
+                        class="remove mdi mdi-account"></i></a>
 
-                  <a style="margin-left: auto" href="{% url 'home:todo_delete' todo.id %}"><i
-                      class="remove mdi mdi-close-circle-outline"></i></a>
-                </li>
-                {% else %}
-                <li>
-                  <div class="form-check">
-                    <label class="form-check-label">
-
-                      <form method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="todo_id" value="{{todo.id}}">
-                        <input class="checkbox" onChange='submit();' type="checkbox">
-                      </form>
-
-                      {{todo.title}} .
-                      <i class="input-helper"></i>
-                    </label> </div>
-                  <a style="margin-left: auto" href="{% url 'home:update_todo' todo.id %}"><i
-                      class=" remove mdi mdi-close-circle-outline"></i></a>
-
-                  <a style="margin-left: auto" href="{% url 'home:todo_delete' todo.id %}"><i
-                      class="remove mdi mdi-close-circle-outline"></i></a>
-                </li>
-                {% endif %}
-
+                    <a style="margin-left: 2px" href="{% url 'home:todo_delete' todo.id %}"><i
+                        class="remove mdi mdi-close-circle-outline"></i></a>
+                  </li>
                 {% endfor %}
 
 
