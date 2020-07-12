@@ -8,6 +8,7 @@
       <title>Snippet - BBBootstrap</title>
       <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
       <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+      <link href='https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css' rel='stylesheet'>
       <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
       <style> body {
 background-color: #f9f9fa
@@ -444,7 +445,15 @@ background-color: #f9f9fa
      font-size: .756em;
      color: #405189
  }
-
+ .mdi2:before {
+    font-family: FontAwesome;
+    content: "\f040";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-size: .756em;
+    color: #405189
+}
  .list-wrapper ul {
      padding: 0;
      text-align: left;
@@ -484,5 +493,6 @@ background-color: #f9f9fa
 
     
 {% endblock body %}
+
 </body>
 </html>

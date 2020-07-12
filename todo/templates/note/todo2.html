@@ -36,8 +36,9 @@
                         </label>
                       </form>
                     </div>
-                    <a style="margin-left: auto" href="{% url 'home:update_todo' todo.id %}"><i
-                        class="remove mdi mdi-account"></i></a>
+                    <a style="margin-left: auto" href="{% url 'home:update_todo' todo.id %}">
+                      <i class="remove mdi2 mdi-close-circle"></i>
+                    </a>
 
                     <a style="margin-left: 2px" href="{% url 'home:todo_delete' todo.id %}"><i
                         class="remove mdi mdi-close-circle-outline"></i></a>
